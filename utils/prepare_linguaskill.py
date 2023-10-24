@@ -36,7 +36,7 @@ if __name__ == '__main__':
     for l in lines:
         parts = l.split()
         # text = parts[0]+ ' '+' '.join(parts[2:]).lower()
-        text = ' '.join(parts[2:]).lower()
+        text = ' '.join(parts[2:]).lower()+'\n'
         out.append(text)
 
     with open('../experiments/files/manual_fluent.txt', 'w') as f:
@@ -50,7 +50,7 @@ if __name__ == '__main__':
     out = []
     for l in lines:
         parts = l.split()
-        text = ' '.join(parts[1:]).lower()
+        text = ' '.join(parts[1:]).lower()+'\n'
         out.append(text)
 
     with open('../experiments/files/manual_gec.txt', 'w') as f:
@@ -66,7 +66,7 @@ if __name__ == '__main__':
         parts = l.split()
         if parts[0][-2] == 'f:':
             continue
-        text = ' '.join(parts[1:]).lower()
+        text = ' '.join(parts[1:]).lower()+'\n'
         out.append(text)
 
     with open('../experiments/files/whisper_fluent.txt', 'w') as f:
@@ -82,7 +82,7 @@ if __name__ == '__main__':
         parts = l.split()
         if parts[0][-2] == 'f:':
             continue
-        text = ' '.join(parts[1:]).lower()
+        text = ' '.join(parts[1:]).lower()+'\n'
         out.append(text)
 
     with open('../experiments/files/whisper_gec.txt', 'w') as f:
@@ -95,7 +95,7 @@ if __name__ == '__main__':
     out = []
     for l in lines:
         parts = l.split()
-        text = ' '.join(parts[1:]).lower()
+        text = ' '.join(parts[1:]).lower()+'\n'
         out.append(text)
 
     with open('../experiments/files/bart_gec.txt', 'w') as f:
