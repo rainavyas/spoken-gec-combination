@@ -64,7 +64,7 @@ if __name__ == '__main__':
     out = []
     for l in lines:
         parts = l.split()
-        if parts[0][-2] == 'f:':
+        if parts[0][-2] == 'f':
             continue
         text = ' '.join(parts[1:]).lower()+'\n'
         out.append(text)
@@ -80,7 +80,7 @@ if __name__ == '__main__':
     out = []
     for l in lines:
         parts = l.split()
-        if parts[0][-2] == 'f:':
+        if parts[0][-2] == 'f':
             continue
         text = ' '.join(parts[1:]).lower()+'\n'
         out.append(text)
