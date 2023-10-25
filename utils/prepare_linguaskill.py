@@ -40,7 +40,6 @@ if __name__ == '__main__':
     out = []
     for l in lines:
         parts = l.split()
-        # text = parts[0]+ ' '+' '.join(parts[2:]).lower()
         text = format_text(' '.join(parts[2:]).lower())+'\n'
         out.append(text)
 
@@ -55,7 +54,7 @@ if __name__ == '__main__':
     out = []
     for l in lines:
         parts = l.split()
-        text = format_text(' '.join(parts[1:]).lower())+'\n'
+        text = format_text(' '.join(parts[2:]).lower())+'\n'
         out.append(text)
 
     with open('../experiments/files/manual_gec.txt', 'w') as f:
