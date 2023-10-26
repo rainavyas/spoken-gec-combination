@@ -19,8 +19,7 @@ def gector_format_text(text):
             res+=ele
     return format_text(res)
 
-def predict_for_file(input_file, output_file, model, batch_size=32, to_normalize=False):
-    test_data = read_lines(input_file)
+def do_gec(test_data, model, batch_size):
     predictions = []
     cnt_corrections = 0
     batch = []
@@ -37,6 +36,15 @@ def predict_for_file(input_file, output_file, model, batch_size=32, to_normalize
         cnt_corrections += cnt
 
     result_lines = [" ".join(x) for x in predictions]
+    return result_lines, cnt_corrections
+
+
+def predict_for_file(input_file, output_file, model, batch_size=32, to_normalize=False, recursions=1):
+    result_lines = read_lines(input_file)
+    for i in range(recursions):
+        print(f'Running recursion {i}')
+        result_lines, cnt_corrections = do_gec(result_lines, model, batch_size)
+    
     if to_normalize:
         result_lines = [normalize(line) for line in result_lines]
 
@@ -67,7 +75,7 @@ def main(args):
 
     cnt_corrections = predict_for_file(args.input_file, args.output_file, model,
                                        batch_size=args.batch_size, 
-                                       to_normalize=args.normalize)
+                                       to_normalize=args.normalize, recursions=args.recursions)
     # evaluate with m2 or ERRANT
     print(f"Produced overall corrections: {cnt_corrections}")
 
@@ -143,6 +151,10 @@ if __name__ == '__main__':
     parser.add_argument('--normalize',
                         help='Use for text simplification.',
                         action='store_true')
+    parser.add_argument('--recursions',
+                        type=int,
+                        help='Repeat the gector process N times',
+                        default=1)
     args = parser.parse_args()
 
     # Save the command run
