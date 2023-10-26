@@ -10,6 +10,14 @@ from utils.prepare_linguaskill import format_text
 from gector.gec_model import GecBERTModel
 
 
+def gector_format_text(text):
+    punc = '''!:;\,./'''
+    res = " "
+    for ele in text:
+        if ele not in punc:
+            res+=ele
+    return format_text(res)
+
 def predict_for_file(input_file, output_file, model, batch_size=32, to_normalize=False):
     test_data = read_lines(input_file)
     predictions = []
@@ -31,8 +39,9 @@ def predict_for_file(input_file, output_file, model, batch_size=32, to_normalize
     if to_normalize:
         result_lines = [normalize(line) for line in result_lines]
 
+    # remove punctuation and capitalisation for spoken GEC assessment
     # format text to have tokenization as per spacy
-    result_lines = [format_text(l) for l in result_lines]
+    result_lines = [gector_format_text(l) for l in result_lines]
 
     with open(output_file, 'w') as f:
         f.write("\n".join(result_lines) + '\n')
