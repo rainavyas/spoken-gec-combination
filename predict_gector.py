@@ -77,7 +77,7 @@ def main(args):
                                        batch_size=args.batch_size, 
                                        to_normalize=args.normalize, recursions=args.recursions)
     # evaluate with m2 or ERRANT
-    print(f"Produced overall corrections: {cnt_corrections}")
+    print(f"Number corrections in final recursion: {cnt_corrections}")
 
 
 if __name__ == '__main__':
