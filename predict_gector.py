@@ -6,6 +6,7 @@ import argparse
 import sys
 import os
 from utils.helpers import read_lines, normalize
+from utils.prepare_linguaskill import format_text
 from gector.gec_model import GecBERTModel
 
 
@@ -29,6 +30,9 @@ def predict_for_file(input_file, output_file, model, batch_size=32, to_normalize
     result_lines = [" ".join(x) for x in predictions]
     if to_normalize:
         result_lines = [normalize(line) for line in result_lines]
+
+    # format text to have tokenization as per spacy
+    result_lines = [format_text(l) for l in result_lines]
 
     with open(output_file, 'w') as f:
         f.write("\n".join(result_lines) + '\n')
