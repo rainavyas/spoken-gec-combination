@@ -73,7 +73,7 @@ def main(args):
 
     cnt_corrections = predict_for_file(args.input_file, args.output_file, model,
                                        batch_size=args.batch_size, 
-                                       to_normalize=args.normalize, recursions=args.recursions)
+                                       to_normalize=args.normalize)
     # evaluate with m2 or ERRANT
     print(f"Number corrections: {cnt_corrections}")
 
