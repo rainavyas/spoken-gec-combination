@@ -13,6 +13,7 @@ from gector.gec_model import GecBERTModel
 def gector_format_text(text):
     punc = '''!:;\,./'''
     res = " "
+    text = text.lower()
     for ele in text:
         if ele not in punc:
             res+=ele
