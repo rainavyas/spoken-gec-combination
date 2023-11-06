@@ -1,5 +1,5 @@
 '''
-Generate output predictions file with ids
+Generate output predictions file
 '''
 
 import argparse
